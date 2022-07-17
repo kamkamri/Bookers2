@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
 # ◆画像を扱えるようにする
 has_one_attached :profile_image
+# ◆1：Nの関係性
+has_many :books, dependent: :destroy
+
 
 
 # ◆画像が存在しない場合no-imagに表示する画像をActiveStrageni格納
