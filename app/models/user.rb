@@ -8,7 +8,7 @@ class User < ApplicationRecord
 has_one_attached :profile_image
 
 
-# ◆画像が存在しない場合no-imageに表示する画像をActiveStrageni格納
+# ◆画像が存在しない場合no-imagに表示する画像をActiveStrageni格納
 # その際、画像を引数でもらいリサイズできるようにしている
 def get_profile_image(width, height)
   unless profile_image.attached?
