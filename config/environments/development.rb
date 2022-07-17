@@ -76,4 +76,7 @@ Rails.application.configure do
 
   #ポスト解放
   config.hosts << "e6290ffce75f4ee9aeb58a25b1a85baa.vfs.cloud9.ap-northeast-1.amazonaws.com"
+
+  #◆ Rails画像リサイズコードエラー回避の記述
+  config.active_job.queue_adapter = :inline
 end
