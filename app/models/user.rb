@@ -10,6 +10,10 @@ has_one_attached :profile_image
 has_many :books, dependent: :destroy
 
 
+ # バリデーション設定
+  validates :name, presence: true, uniqueness: true , length: { minimum:2, maximum: 20}
+  validates :introduction, length: { maximum: 50}
+
 
 # ◆画像が存在しない場合no-imagに表示する画像をActiveStrageni格納
 # その際、画像を引数でもらいリサイズできるようにしている
