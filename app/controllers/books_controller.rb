@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   def index
     @books = Book.all
-    @booknew = Book.new
+    @book = Book.new
     @user = current_user
   end
 
@@ -12,6 +12,11 @@ class BooksController < ApplicationController
       flash[:notice] = "You have created book successfully."
       # book#showにリダイレクト
       redirect_to book_path(@book.id)
+    else
+      @books = Book.all
+      @booknew = @book
+      @user = current_user
+      render :index
     end
   end
 
@@ -32,6 +37,8 @@ class BooksController < ApplicationController
       flash[:notice] = "You have updated book successfully."
       # book#showにリダイレクト
       redirect_to book_path(@book.id)
+    else
+      render :edit
     end
   end
 
