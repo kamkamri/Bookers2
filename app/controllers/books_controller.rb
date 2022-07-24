@@ -28,25 +28,34 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    unless @book.user == current_user
+      redirect_to books_path
+    end
   end
 
   def update
     @book = Book.find(params[:id])
-
-    if @book.update(book_params)
-      flash[:notice] = "You have updated book successfully."
-      # book#showにリダイレクト
-      redirect_to book_path(@book.id)
+    if @book.user != current_user
+      redirect_to books_path
     else
-      render :edit
+      if @book.update(book_params)
+        flash[:notice] = "You have updated book successfully."
+        # book#showにリダイレクト
+        redirect_to book_path(@book.id)
+      else
+        render :edit
+      end
     end
   end
 
   def destroy
     @book = Book.find(params[:id])
-    @book.destroy
-    redirect_to books_path
-
+    if @book.user != current_user
+      redirect_to books_path
+    else
+      @book.destroy
+      redirect_to books_path
+    end
   end
 
 # ストロングパラメータ

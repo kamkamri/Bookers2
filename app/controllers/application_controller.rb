@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user!, except:[:top, :about]
   # before_action ApplicationCntrollerを実行する前に（＝全てのコントローラーの実行前に）
   # devise_controller?  デバイスに関わるがめんに行ったときに
   # configure_permitted_parameters　を行う
